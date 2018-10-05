@@ -1,0 +1,102 @@
+---
+title: "Project 1"
+output: word_document
+---
+
+Reproducible Research: Course Project 1
+===========================================
+
+
+Introduction
+
+This project is an assignment of the Reproducible Research course. It loads a data set, performs some processing, and produces some charts. The data was related with the number of steps taken as recorded by a Fitbit or other similar device.
+```{r}
+setwd("~/Cursos/5 - Reproducible Research/Week 1 - Concepts, Ideas, & Structure/Assignment - Course Project 1/Repro_Research_-Project_1")
+```
+
+Item 1 - Code for reading in the dataset and/or processing the data
+Loading and preprocessing the data. The data was in a file named "activity.csv".
+
+```{r}
+actv<-read.csv("activity.csv", sep = ",")
+str(actv)
+summary(actv)
+head(actv)
+```
+
+Item 2 - Histogram of the total number of steps taken each day
+The data is presented as a histogram exploring its distribution.
+```{r}
+steps_day <- aggregate(steps ~ date, data = actv, sum, na.rm = T)
+hist(steps_day$steps, breaks = 20, main = "Total number of steps per day", xlab = "Steps", ylab = "Frequency")
+```
+
+The histogram sugests the distribution of steps in a day. However, estimating visually is not always accurate enough.
+
+
+Item 3 - Mean and median number of steps taken each day
+What is mean total number of steps taken per day?
+Calculating the mean and median of the aggregated steps per day is straightforward.
+
+```{r}
+mean(steps_day$steps)
+median(steps_day$steps)
+```
+
+
+Item 4 - Time series plot of the average number of steps taken
+
+To find the average daily activy pattern the data was aggregated the data on mean steps and was then presented as a time series plot.
+
+```{r}
+steps_interval <- aggregate(steps ~ interval, data = actv, mean, na.rm = T)
+plot( steps_interval$interval, steps_interval$steps,type = "l", main = "Steps per 5 min interval", xlab = "5 min interval", ylab = "Steps")
+```
+
+
+Item 5 - The 5-minute interval that, on average, contains the maximum number of steps
+
+```{r}
+which.max(steps_interval$steps)
+steps_interval[104,]
+```
+
+
+Item 6 - Code to describe and show a strategy for imputing missing data
+The "Nas" was replaced by the median value in the data set. 
+
+```{r}
+sum(is.na(actv$steps))
+actv_i <- actv
+actv_i$steps[is.na(actv_i$steps)] <- mean(actv_i$steps, na.rm = T)
+sum(is.na(actv_i$steps))
+```
+
+
+
+
+
+Item 7 - Histogram of the total number of steps taken each day after missing values are imputed
+
+```{r}
+steps_day_i <- aggregate(steps ~ date, data = actv_i, sum, na.rm = T)
+hist(steps_day_i$steps, breaks = 20, main = "Total number of steps per day - missing data imputed", xlab = "Steps", ylab = "Frequency")
+mean(steps_day_i$steps)
+median(steps_day_i$steps)
+```
+
+These results for mean and median are not surprising as the median of the uncorrected set is 0, so replacing NAs with zeros unsurprisingly a) reduces the mean and b) has no impact on the median.
+
+Item 8 - Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends
+Analysis of the differences in activity patterns between weekdays and weekends
+
+```{r}
+actv_i$date <- as.Date(actv_i$date)
+actv_i$dayname <- weekdays(actv_i$date)
+actv_i$weekend <- as.factor(ifelse(actv_i$dayname == "sábado" | actv_i$dayname == "domingo", "weekend", "weekday"))
+library(lattice)
+plotdata <- aggregate(steps ~ interval + weekend, actv_i, mean)
+xyplot(steps ~ interval | factor(weekend), layout = c(1, 2), data=plotdata, aspect=1/3, type="l")
+```
+
+
