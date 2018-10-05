@@ -2,11 +2,6 @@
 
 Repos related to Johns Hopkins University and Coursera's Data Science Specialization.<br><br>
 
-version-control/data_analysis/data_science <br>
-
-git remote add origin https://github.com/nunesma/data_science <br>
-git push -u origin master <br>
-
 Table of contents:
 - Getting and Cleaning Data project
 - Exploratory Data Analysis project
@@ -15,7 +10,7 @@ Table of contents:
 - DataScienceSpCourseNotes
 
 ### Getting and Cleaning Data
-Before you can work with data you have to get some. This course will cover the basic ways that data can be obtained. The course will cover obtaining data from the web, from APIs, from databases and from colleagues in various formats. It will also cover the basics of data cleaning and how to make data “tidy”. Tidy data dramatically speed downstream data analysis tasks. The course will also cover the components of a complete data set including raw data, processing instructions, codebooks, and processed data. The course will cover the basics needed for collecting, cleaning, and sharing data.<br><br>
+This course will cover the basic ways that data can be obtained. The course will cover obtaining data from the web, from APIs, from databases and from colleagues in various formats. It will also cover the basics of data cleaning and how to make data “tidy”. Tidy data dramatically speed downstream data analysis tasks. The course will also cover the components of a complete data set including raw data, processing instructions, codebooks, and processed data. The course will cover the basics needed for collecting, cleaning, and sharing data.<br><br>
 
 ### Exploratory Data Analysis
 This course covers the essential exploratory techniques for summarizing data. These techniques are typically applied before formal modeling commences and can help inform the development of more complex statistical models. Exploratory techniques are also important for eliminating or sharpening potential hypotheses about the world that can be addressed by the data. We will cover in detail the plotting systems in R as well as some of the basic principles of constructing data graphics. We will also cover some of the common multivariate statistical techniques used to visualize high-dimensional data.<br><br>
