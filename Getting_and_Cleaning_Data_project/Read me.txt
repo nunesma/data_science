@@ -1,0 +1,13 @@
+Getting-and-Cleaning-Data-Course-Project
+
+Marco Antonio Prado Nunes
+
+Repo for the activity of the course Getting and Cleaning Data course.
+
+This activity aimed to demonstrate the effort for cleaning a data set that will be used for subsequent analysis.
+
+Once obtained and unzipped the source files, you will need to make one modification to the R file before you can process the data.
+
+You must don't forget to set the path of the working directory before run in R.
+
+You should create one R script called run_analysis.R that does the following: 1. Merges the training and the test sets to create one data set. 2. Extracts only the measurements on the mean and standard deviation for each measurement. 3. Uses descriptive activity names to name the activities in the data set 4. Appropriately labels the data set with descriptive activity names. 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
